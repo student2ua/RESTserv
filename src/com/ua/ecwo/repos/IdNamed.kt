@@ -1,3 +1,7 @@
 package com.ua.ecwo.repos
 
-data class IdNamed (var id:Int, var name:String)
+import javax.xml.bind.annotation.XmlElement
+import javax.xml.bind.annotation.XmlRootElement
+
+@XmlRootElement
+data class IdNamed (@XmlElement var id:Int, @XmlElement var name:String)

@@ -9,8 +9,8 @@
     <description>REST servis on Ktor</description>
     <properties>
         <!--<kotlin_version>1.2.50</kotlin_version>-->
-        <kotlin_version>1.2.61</kotlin_version>
-        <ktor_version>0.9.4</ktor_version>
+        <kotlin_version>1.2.70</kotlin_version>
+        <ktor_version>0.9.5</ktor_version>
         <logback_version>1.2.1</logback_version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
@@ -89,18 +89,7 @@
             <version>${ktor_version}</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>io.ktor</groupId>
-            <artifactId>ktor-webjars</artifactId>
-            <version>${ktor_version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>jquery</artifactId>
-            <version>3.2.1</version>
-            <scope>compile</scope>
-        </dependency>
+
         <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-jackson</artifactId>
@@ -108,11 +97,26 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.8.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.8.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.8.7</version>
+        </dependency>
+          <!--   <dependency>
             <groupId>io.ktor</groupId>
             <artifactId>ktor-client-core</artifactId>
             <version>${ktor_version}</version>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <build>
         <sourceDirectory>${project.basedir}/src</sourceDirectory>
