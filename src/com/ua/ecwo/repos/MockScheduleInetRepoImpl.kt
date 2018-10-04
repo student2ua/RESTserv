@@ -3,8 +3,8 @@ package com.ua.ecwo.repos
 class MockScheduleInetRepoImpl : ScheduleInetRepo {
     val courses: List<Int> = listOf(1, 2, 3, 4)
     val maps = mapOf(
-            Pair(IdNamed(1, "ff"), listOf(IdNamed(1, "sf"), IdNamed(2, "sE"))),
-            Pair(IdNamed(2, "ff"), listOf(IdNamed(3, "sf"), IdNamed(4, "sE")))
+            Pair(IdNamed(1, "faculty_1"), listOf(IdNamed(1, "sf"), IdNamed(2, "sE"))),
+            Pair(IdNamed(2, "faculty_2"), listOf(IdNamed(3, "sf"), IdNamed(4, "sE")))
 
     )
     val studentGroups: Map<Triple<Int, Int, Int>, Set<IdNamed>> = mapOf(
