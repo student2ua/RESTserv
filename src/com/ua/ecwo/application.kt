@@ -2,7 +2,10 @@ package com.ua.ecwo
 
 import com.codahale.metrics.JmxReporter
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.ua.ecwo.repos.IKTRepo
+import com.ua.ecwo.repos.IKTRepoImpl_asSample
 import com.ua.ecwo.repos.MockScheduleInetRepoImpl
+import com.ua.ecwo.routing.pAPI_ikt
 import com.ua.ecwo.routing.schedule17
 import io.ktor.application.*
 import io.ktor.features.*
@@ -69,6 +72,7 @@ fun Application.module() {
 
     install(Routing) {
         schedule17(MockScheduleInetRepoImpl())
+        pAPI_ikt(IKTRepoImpl_asSample())
         get("/") {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
