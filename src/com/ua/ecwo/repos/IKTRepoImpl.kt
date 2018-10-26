@@ -5,22 +5,43 @@ import com.ua.ecwo.repos.entity.IktElectronicCourses
 import com.ua.ecwo.repos.entity.IktElectronicCoursesTable
 import org.jetbrains.exposed.sql.*
 
-class IKTRepoImpl_asSample : IKTRepo {
-    suspend override fun create(entity: IktElectronicCourses) {
-        update(entity)
+class IKTRepoImpl_asSample(val log: org.slf4j.Logger) : IKTRepo {
+
+    override suspend fun delete(entity: IktElectronicCourses) {
+        deleteById(entity.id)
     }
 
-    override suspend fun update(entity: IktElectronicCourses): IktElectronicCourses? {
+    suspend override fun create(entity: IktElectronicCourses): IktElectronicCourses {
         dbQuery {
-            IktElectronicCoursesTable.update({ IktElectronicCoursesTable.id eq entity.id }) {
+            IktElectronicCoursesTable.insert {
                 it[id] = entity.id
                 it[name] = entity.name
                 it[shortname] = entity.shortname
                 it[departmentId] = entity.departmentId
             }
-
         }
         return findById(entity.id)
+    }
+
+    override suspend fun modify(entity: IktElectronicCourses): IktElectronicCourses {
+        return dbQuery {
+            log.info("start Update")
+            val update = IktElectronicCoursesTable.update({ IktElectronicCoursesTable.id eq entity.id }) {
+                it[id] = entity.id
+                it[name] = entity.name
+                it[shortname] = entity.shortname
+                it[departmentId] = entity.departmentId
+            }/*.also { IktElectronicCoursesTable
+                    .select { (IktElectronicCoursesTable.id eq entity.id) }
+                    .mapNotNull { toIKT(it) }
+                    .single() }*/
+            log.info("${update} start select")
+            IktElectronicCoursesTable
+                    .select { (IktElectronicCoursesTable.id eq entity.id) }
+                    .mapNotNull { toIKT(it) }
+                    .single()
+        }
+//        return findById(entity.id)
     }
 
     override suspend fun deleteById(id: Int): Boolean {
@@ -31,14 +52,14 @@ class IKTRepoImpl_asSample : IKTRepo {
 
     }
 
-    override suspend fun findById(id: Int): IktElectronicCourses? = dbQuery {
+    override suspend fun findById(id: Int): IktElectronicCourses = dbQuery {
         IktElectronicCoursesTable
                 .select { (IktElectronicCoursesTable.id eq id) }
                 .mapNotNull { toIKT(it) }
-                .singleOrNull()
+                .single()
     }
 
-    suspend override fun listAll(): List<IktElectronicCourses> = dbQuery {
+    suspend override fun findAll(): List<IktElectronicCourses> = dbQuery {
         IktElectronicCoursesTable.selectAll().map { toIKT(it) }
     }
 
@@ -49,3 +70,10 @@ class IKTRepoImpl_asSample : IKTRepo {
             departmentId = row[IktElectronicCoursesTable.departmentId]
     )
 }
+
+fun ResultRow.toIkt() = IktElectronicCourses(
+        id = this[IktElectronicCoursesTable.id],
+        name = this[IktElectronicCoursesTable.name],
+        shortname = this[IktElectronicCoursesTable.shortname],
+        departmentId = this[IktElectronicCoursesTable.departmentId]
+)
