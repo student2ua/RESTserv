@@ -89,7 +89,7 @@ fun Application.module() {
 
     install(Routing) {
         schedule17(ScheduleInetRepoMockImpl())
-        pAPI_ikt(IKTRepoImpl_asSample(log))
+        pAPI_ikt(IKTRepoImpl_asSample())
         get("/") {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
@@ -107,12 +107,10 @@ fun Application.module() {
               call.respond(HttpStatusCode.InternalServerError)
           }*/
     }
-    /*  get("/json/jackson") {
-          call.respond(mapOf("hello" to "world"))
-      }*/
+
 }
 
-public suspend fun <R> PipelineContext<*, ApplicationCall>.errorAware(block: suspend () -> R): R? {
+suspend fun <R> PipelineContext<*, ApplicationCall>.errorAware(block: suspend () -> R): R? {
 
     return try {
 

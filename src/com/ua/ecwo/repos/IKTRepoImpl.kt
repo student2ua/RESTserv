@@ -5,7 +5,7 @@ import com.ua.ecwo.repos.entity.IktElectronicCourses
 import com.ua.ecwo.repos.entity.IktElectronicCoursesTable
 import org.jetbrains.exposed.sql.*
 
-class IKTRepoImpl_asSample(val log: org.slf4j.Logger) : IKTRepo {
+class IKTRepoImpl_asSample(/*val log: org.slf4j.Logger*/) : IKTRepo {
 
     override suspend fun delete(entity: IktElectronicCourses) {
         deleteById(entity.id)
@@ -25,17 +25,12 @@ class IKTRepoImpl_asSample(val log: org.slf4j.Logger) : IKTRepo {
 
     override suspend fun modify(entity: IktElectronicCourses): IktElectronicCourses {
         return dbQuery {
-            log.info("start Update")
             val update = IktElectronicCoursesTable.update({ IktElectronicCoursesTable.id eq entity.id }) {
                 it[id] = entity.id
                 it[name] = entity.name
                 it[shortname] = entity.shortname
                 it[departmentId] = entity.departmentId
-            }/*.also { IktElectronicCoursesTable
-                    .select { (IktElectronicCoursesTable.id eq entity.id) }
-                    .mapNotNull { toIKT(it) }
-                    .single() }*/
-            log.info("${update} start select")
+            }
             IktElectronicCoursesTable
                     .select { (IktElectronicCoursesTable.id eq entity.id) }
                     .mapNotNull { toIKT(it) }
