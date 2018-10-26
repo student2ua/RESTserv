@@ -1,6 +1,8 @@
 package com.ua.ecwo.repos
 
-class MockScheduleInetRepoImpl : ScheduleInetRepo {
+import com.ua.ecwo.model.IdNamed
+
+class ScheduleInetRepoMockImpl : ScheduleInetRepo {
     val courses: List<Int> = listOf(1, 2, 3, 4)
     val maps = mapOf(
             Pair(IdNamed(1, "faculty_1"), listOf(IdNamed(1, "sf"), IdNamed(2, "sE"))),

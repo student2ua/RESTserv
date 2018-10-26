@@ -17,5 +17,6 @@
 - [RESTful Kotlin with Ktor and Exposed](https://ryanharrison.co.uk/2018/04/14/kotlin-ktor-exposed-starter.html)
 - [KotlinConf Schedule Application - BackEnd](https://github.com/JetBrains/kotlinconf-app/blob/master/backend/src/org/jetbrains/kotlinconf/backend/Main.kt)
 - [ktor Example Application](https://github.com/s1monw1/ktor_application/blob/master/src/main/kotlin/de/swirtz/kotlin/webdev/ktor/repo/PersonRepo.kt)
+- [Kotlin Ktor Exposed Sample API](https://github.com/arun0009/kotlin-ktor-exposed-sample-api.git)
 
 

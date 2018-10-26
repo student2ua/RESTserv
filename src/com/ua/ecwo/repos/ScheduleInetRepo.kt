@@ -1,5 +1,7 @@
 package com.ua.ecwo.repos
 
+import com.ua.ecwo.model.IdNamed
+
 interface ScheduleInetRepo {
 
     fun getFacultyAll(): Set<IdNamed>

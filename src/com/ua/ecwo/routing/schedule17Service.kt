@@ -13,7 +13,7 @@ fun Route.schedule17(repo: ScheduleInetRepo) {
 
         /**
          * список групп факультета/специальности, по умолчанию незакончившиеся на текущий учебный год
-         * http://192.168.0.124:8080/openAPI/rest/faculties/1
+         * http://192.168.0.124:8080/openAPI/rest/schedule/v170/faculties/1
          */
         get("/faculties/") {
             call.respond(repo.getFacultyAll())
