@@ -3,7 +3,7 @@ package com.ua.ecwo.repos
 import com.ua.ecwo.model.IdNamed
 
 class ScheduleInetRepoMockImpl : ScheduleInetRepo {
-    val courses: List<Int> = listOf(1, 2, 3, 4)
+    val courses: Set<Int> = setOf(1, 2, 3, 4)
     val maps = mapOf(
             Pair(IdNamed(1, "faculty_1"), listOf(IdNamed(1, "sf"), IdNamed(2, "sE"))),
             Pair(IdNamed(2, "faculty_2"), listOf(IdNamed(3, "sf"), IdNamed(4, "sE")))
@@ -35,7 +35,7 @@ class ScheduleInetRepoMockImpl : ScheduleInetRepo {
         return maps.getOrDefault(maps.keys.single { idNamed -> idNamed.id == fid }, emptyList()).single { idNamed -> idNamed.id == sid }
     }
 
-    override fun getCourses(fid: Int, sid: Int): List<Int> {
+    override fun getCourses(fid: Int, sid: Int): Set<Int> {
         return courses;
     }
 

@@ -12,7 +12,7 @@ interface ScheduleInetRepo {
 
     fun getSpeciality(fid: Int, sid: Int): IdNamed
 
-    fun getCourses(fid: Int, sid: Int): List<Int>
+    fun getCourses(fid: Int, sid: Int): Set<Int>
 
     fun getStudentGroups(fid: Int, sid: Int, course: Int): Set<IdNamed>
 
